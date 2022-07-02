@@ -1,14 +1,22 @@
 <template>
   <ul>
-    <li v-for="resource in resources" :key="resource.id">
-      {{ resource.title }}
-      {{ resource.description }}
-    </li>
+    <resource-item
+      v-for="resource in resources"
+      :key="resource.id"
+      :title="resource.title"
+      :description="resource.description"
+      :link="resource.link"
+    ></resource-item>
   </ul>
 </template>
 
 <script>
+import ResourceItem from './components/learning-resources/ResourceItem.vue';
+
 export default {
+  components: {
+    ResourceItem,
+  },
   data() {
     return {
       resources: [
