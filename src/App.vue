@@ -22,7 +22,7 @@ export default {
       resources: [
         {
           id: 1,
-          title: 'Official guide',
+          title: 'Official guide for Vue',
           description: 'The official Vue.js documentation',
           link: 'https://vuejs.org/',
         },
@@ -38,4 +38,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin: auto;
+  max-width: 40rem;
+}
+</style>
