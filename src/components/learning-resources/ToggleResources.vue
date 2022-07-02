@@ -22,23 +22,25 @@ export default {
     BaseCard,
   },
   emits: ['selected-tab'],
+  props: ['dummy'],
   data() {
     return {
       selectedTab: 'stored-resources',
-      button1: true,
-      button2: false,
     };
   },
   computed: {
     checkbutton1Mode() {
-      if (this.selectedTab === 'stored-resources') {
+      if (
+        this.selectedTab === 'stored-resources' ||
+        this.dummy === 'stored-resources'
+      ) {
         return 'null';
       } else {
         return 'flat';
       }
     },
     checkbutton2Mode() {
-      if (this.selectedTab === 'add-resources') {
+      if (this.selectedTab === 'add-resources' && this.dummy === '') {
         return 'null';
       } else {
         return 'flat';

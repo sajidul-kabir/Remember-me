@@ -1,6 +1,6 @@
 <template>
   <the-header title="RememberMe"></the-header>
-  <stored-resources @selected-tab="changeTab"></stored-resources>
+  <toggle-resources :dummy="dummy" @selected-tab="changeTab"></toggle-resources>
   <ul v-if="selectedTab === 'stored-resources'">
     <resource-item
       v-for="resource in resources"
@@ -10,25 +10,27 @@
       :link="resource.link"
     ></resource-item>
   </ul>
-  <add-resources v-else></add-resources>
+  <add-resources v-else @user-input="addResource($event)"></add-resources>
 </template>
 
 <script>
 import ResourceItem from './components/learning-resources/ResourceItem.vue';
 import TheHeader from './components/layouts/TheHeader.vue';
-import StoredResources from './components/learning-resources/ToggleResources.vue';
+import ToggleResources from './components/learning-resources/ToggleResources.vue';
 import AddResources from './components/learning-resources/AddResources.vue';
 
 export default {
   components: {
     ResourceItem,
     TheHeader,
-    StoredResources,
+    ToggleResources,
     AddResources,
   },
+
   data() {
     return {
       selectedTab: 'stored-resources',
+      dummy: '',
       resources: [
         {
           id: 1,
@@ -48,6 +50,12 @@ export default {
   methods: {
     changeTab(tab) {
       this.selectedTab = tab;
+      this.dummy = '';
+    },
+    addResource(resource) {
+      this.resources.push(resource);
+      this.selectedTab = 'stored-resources';
+      this.dummy = 'stored-resources';
     },
   },
 };
