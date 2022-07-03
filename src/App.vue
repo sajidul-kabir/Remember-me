@@ -5,9 +5,11 @@
     <resource-item
       v-for="resource in resources"
       :key="resource.id"
+      :id="resource.id"
       :title="resource.title"
       :description="resource.description"
       :link="resource.link"
+      @delete-resource="deleteResource"
     ></resource-item>
   </ul>
   <add-resources v-else @user-input="addResource($event)"></add-resources>
@@ -56,6 +58,19 @@ export default {
       this.resources.push(resource);
       this.selectedTab = 'stored-resources';
       this.dummy = 'stored-resources';
+    },
+    deleteResource(id) {
+      let index = 0;
+      this.resources.every(function (resource) {
+        //console.log(index);
+        if (id === resource.id) {
+          return false;
+        }
+        index++;
+        return true;
+      });
+      console.log(index);
+      this.resources.splice(index, 1);
     },
   },
 };

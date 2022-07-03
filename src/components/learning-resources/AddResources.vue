@@ -52,6 +52,7 @@ export default {
     return {
       isInvalid: false,
       userInput: {
+        id: '',
         title: '',
         description: '',
         link: '',
@@ -68,7 +69,7 @@ export default {
         this.isInvalid = true;
         return;
       }
-
+      this.userInput.id = Date.now();
       this.$emit('user-input', this.userInput);
       //this.$emit('eve-nting', 'riga');
     },
