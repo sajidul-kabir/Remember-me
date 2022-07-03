@@ -1,5 +1,5 @@
 # Remember-me
-## A mini Vue app for adding resources and deleting them dynamically. Used procedures such as Dynamic component rendering, Component interaction through props and events, List rendering etc.
+### A mini Vue app for adding resources and deleting them dynamically. Used procedures such as Dynamic component rendering, Component interaction through props and events, List rendering etc.
 ## Project setup
 ```
 npm install
