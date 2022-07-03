@@ -1,4 +1,19 @@
 <template>
+  <base-dialog
+    v-if="isInvalid"
+    title="Invalid Input"
+    @close-modal="confirmError"
+  >
+    <template #default>
+      <p>Fill up all the inputs</p>
+      <p>
+        Please check all the inputs and make sure you inputted all the fields
+      </p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="collectInputs()">
       <div class="form-control">
@@ -28,12 +43,14 @@
 <script>
 import BaseButton from '../UI/BaseButton.vue';
 import BaseCard from '../UI/BaseCard.vue';
+import BaseDialog from '../UI/BaseDialog.vue';
 export default {
-  components: { BaseButton, BaseCard },
+  components: { BaseButton, BaseCard, BaseDialog },
   emits: ['user-input'],
   // emits: ['eve-nting'],
   data() {
     return {
+      isInvalid: false,
       userInput: {
         title: '',
         description: '',
@@ -43,8 +60,20 @@ export default {
   },
   methods: {
     collectInputs() {
+      if (
+        this.userInput.title === '' ||
+        this.userInput.description === '' ||
+        this.userInput.link === ''
+      ) {
+        this.isInvalid = true;
+        return;
+      }
+
       this.$emit('user-input', this.userInput);
       //this.$emit('eve-nting', 'riga');
+    },
+    confirmError() {
+      this.isInvalid = false;
     },
   },
 };
